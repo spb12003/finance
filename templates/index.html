@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Finance
+{% endblock %}
+
+{% block main %}
+    <form action="/" method="post">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="centered-text">Symbol</th>
+                    <th class="centered-text">Name</th>
+                    <th class="centered-text">Shares</th>
+                    <th class="centered-text">Price</th>
+                    <th class="entered-text">TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for purchase in purchases %}
+                    <tr>
+                        <td class="centered-text">{{ purchase.symbol }}</td>
+                        <td class="centered-text">{{ purchase.name }}</td>
+                        <td class="centered-text">{{ purchase.shares }}</td>
+                        <td class="centered-text">{{ purchase.price | usd }}</td>
+                        <td class="centered-text">{{ purchase.total_cost | usd }}</td>
+                    </tr>
+                {% endfor %}
+             </tbody>
+            <tfoot>
+                <tr>
+                    <td class="border-0 fw-bold text-end" colspan="4">Cash</td>
+                    <td class="border-0 centered-text" colspan="4">{{ cash | usd }}</td>
+                </tr>
+                <tr>
+                    <td class="border-0 fw-bold text-end" colspan="4">TOTAL</td>
+                    <td class="border-0 centered-text" colspan="4">{{ total | usd }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+{% endblock %}

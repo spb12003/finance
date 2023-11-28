@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/quote" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Search</button>
+        <p class="stock qoute">
+        {{ quote }}
+        </p>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="centered-text">Search History</th>
+                    <th class="centered-text">Symbol</th>
+                    <th class="centered-text">Price</th>
+                    <th class="centered-text">Time Stamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in search_history %}
+                    <tr>
+                        <td></td>
+                        <td>{{ item.symbol }}</td>
+                        <td>{{ item.price_h }}</td>
+                        <td>{{ item.time_stamp }}</td>
+                    </tr>
+                {% endfor %}
+             </tbody>
+        </table>
+    </form>
+{% endblock %}

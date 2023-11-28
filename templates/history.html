@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Finance
+{% endblock %}
+
+{% block main %}
+    <form action="/history" method="post">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="centered-text">Symbol</th>
+                  <!--  <th class="centered-text">Buy/Sell</th>  -->
+                    <th class="centered-text">Shares</th>
+                    <th class="centered-text">Price</th>
+                    <th class="centered-text">Transacted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in history %}
+                    <tr>
+                        <td>{{ item.symbol }}</td>
+                    <!--    <td>{{ item.buy_sell }}</td>  -->
+                        <td>{{ item.shares_h }}</td>
+                        <td>{{ item.price_h | usd}}</td>
+                        <td>{{ item.time_stamp }}</td>
+                    </tr>
+                {% endfor %}
+             </tbody>
+        </table>
+    </form>
+{% endblock %}
